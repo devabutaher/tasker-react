@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center relative">
         <Hero />
         <TaskBoard />
       </div>
