@@ -1,8 +1,18 @@
+import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header";
+import Hero from "./Components/Hero/Hero";
+import TaskBoard from "./Components/Task/TaskBoard";
+
 const App = () => {
   return (
-    <div>
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <>
+      <Header />
+      <div className="flex flex-col justify-center items-center">
+        <Hero />
+        <TaskBoard />
+      </div>
+      <Footer />
+    </>
   );
 };
 
