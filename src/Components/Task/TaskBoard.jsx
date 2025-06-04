@@ -17,11 +17,16 @@ const TaskBoard = () => {
   const [tasks, setTasks] = useState([defaultTasks]);
   const [showAddModal, setShowAddModal] = useState(false);
 
+  const handleAddTask = (task) => {
+    setTasks([...tasks, task]);
+    setShowAddModal(false);
+  };
+
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
         {/* Add Task Modal */}
-        {showAddModal && <AddTaskModal />}
+        {showAddModal && <AddTaskModal onSave={handleAddTask} />}
 
         {/* Search Box */}
         <SearchTask />
