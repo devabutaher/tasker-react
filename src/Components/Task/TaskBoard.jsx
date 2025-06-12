@@ -16,17 +16,40 @@ const TaskBoard = () => {
 
   const [tasks, setTasks] = useState([defaultTasks]);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [taskToUpdate, setTaskToUpdate] = useState(null);
 
-  const handleAddTask = (task) => {
-    setTasks([...tasks, task]);
+  const handleAddTask = (newTask, isAdd) => {
+    if (isAdd) {
+      setTasks([...tasks, newTask]);
+    } else {
+      setTasks(
+        tasks.map((task) => {
+          if (task.id === newTask.id) {
+            return newTask;
+          }
+
+          return task;
+        })
+      );
+
+      setTaskToUpdate(null);
+    }
+
     setShowAddModal(false);
+  };
+
+  const handleEditTask = (task) => {
+    setTaskToUpdate(task);
+    setShowAddModal(true);
   };
 
   return (
     <section className="mb-20" id="tasks">
       <div className="container">
         {/* Add Task Modal */}
-        {showAddModal && <AddTaskModal onSave={handleAddTask} />}
+        {showAddModal && (
+          <AddTaskModal onSave={handleAddTask} taskToUpdate={taskToUpdate} />
+        )}
 
         {/* Search Box */}
         <SearchTask />
@@ -34,7 +57,7 @@ const TaskBoard = () => {
           {/* Task Action */}
           <TaskAction handleShowModal={() => setShowAddModal(true)} />
           {/* Task List */}
-          <TaskList tasks={tasks} />
+          <TaskList tasks={tasks} onEdit={handleEditTask} />
         </div>
       </div>
     </section>
