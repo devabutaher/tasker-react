@@ -1,6 +1,6 @@
 import { HeartIcon } from "@phosphor-icons/react";
 
-const TaskList = ({ tasks, onEdit }) => {
+const TaskList = ({ tasks, onEdit, onDelete, onFav }) => {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -39,6 +39,7 @@ const TaskList = ({ tasks, onEdit }) => {
                 <HeartIcon
                   size={20}
                   color="#f9c153"
+                  onClick={() => onFav(task.id)}
                   weight={task.isFavorite ? `fill` : `regular`}
                 />
               </td>
@@ -60,7 +61,12 @@ const TaskList = ({ tasks, onEdit }) => {
               <td className="text-center">{task.priority}</td>
               <td>
                 <div className="flex items-center justify-center space-x-3">
-                  <button className="text-red-500">Delete</button>
+                  <button
+                    onClick={() => onDelete(task.id)}
+                    className="text-red-500"
+                  >
+                    Delete
+                  </button>
                   <button
                     onClick={() => onEdit(task)}
                     className="text-blue-500"

@@ -1,6 +1,7 @@
+import { XCircleIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 
-const AddTaskModal = ({ onSave, taskToUpdate }) => {
+const AddTaskModal = ({ onSave, taskToUpdate, handleClose }) => {
   const [task, setTask] = useState(
     taskToUpdate || {
       id: crypto.randomUUID(),
@@ -32,9 +33,10 @@ const AddTaskModal = ({ onSave, taskToUpdate }) => {
     <>
       <div className="bg-gray-800/80 h-full w-full z-10 absolute inset-0"></div>
       <form className="mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11 z-10 absolute top-1/4 left-1/4">
-        <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
-          {isAdd ? "Add New Task" : "Edit Task"}
-        </h2>
+        <div className="flex items-center justify-between gap-4 mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
+          <h2 className="">{isAdd ? "Add New Task" : "Edit Task"}</h2>
+          <XCircleIcon onClick={() => handleClose()} size={34} />
+        </div>
         {/* <!-- inputs --> */}
         <div className="space-y-9 text-white lg:space-y-10">
           {/* <!-- title --> */}
